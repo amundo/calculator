@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+<head>
+<title>
+</title>
+<meta charset=utf-8>
+<script src=js/jquery.js></script>
+<script src=js/underscore.js></script>
+<script src=js/backbone.js></script>
+<script src=js/d3.v3.js></script>
+<script src=js/prefixfree.js></script>
+
+<link rel=stylesheet href=css/style.css />
+<link rel=stylesheet href=css/mobile.css />
+
+</head>
+<body>
+
+
+<input id=screen></input>
+<button id=enter>=</button>
+<button id=clear>clear</button>
+<table>
+<tr>
+  <td><button>1</button></td>
+  <td><button>2</button></td>
+  <td><button>3</button></td>
+</tr>
+<tr>
+  <td><button>4</button></td>
+  <td><button>5</button></td>
+  <td><button>6</button></td>
+</tr>
+<tr>
+  <td><button>7</button></td>
+  <td><button>8</button></td>
+  <td><button>9</button></td>
+</tr>
+<tr>
+  <td><button>0</button></td>
+  <td><button>+</button></td>
+  <td><button>-</button></td>
+</tr>
+<tr>
+  <td><button>*</button></td>
+  <td><button>/</button></td>
+</tr>
+</table>
+
+
+<script>
+
+$(function(){
+
+$('td button').on('click', function(ev){
+  $('#screen').get(0).value += ev.target.textContent;
+})
+
+$('#clear').on('click', function(){ $('#screen').val('')})
+$('#enter').on('click', calculate)
+
+function calculate(){
+  $('#screen').val(eval($('#screen').val()));
+}
+
+$(document).on('keyup', function(ev){
+  var key = ev.which;
+  switch(key){
+    case 13:
+      calculate();
+  }
+})
+
+
+})
+
+</script>
+
+</body>
+</html>
