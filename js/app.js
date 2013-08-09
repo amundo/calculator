@@ -13,28 +13,24 @@ $(function(){
     initialize : function(){ 
       _.bindAll(this, 'calculate', 'documentKeyup', 'clear', 'press');
       $(document).on('keyup', this.documentKeyup)
+      this.$screen = this.$el.find('#screen');
     },
   
     documentKeyup : function(ev){ 
-      var key = ev.which;
-      switch(key){
-        case 13:
-          this.calculate();
-      }
+      if(ev.which == 13)
+          this.calculate()
     },
   
     clear : function(){ 
-      this.$el.find('#screen').val('');
+      this.$screen.val('');
     },
   
     press : function(ev){ 
-      $('#screen').get(0).value += ev.target.textContent;
+      this.$screen.get(0).value += ev.target.textContent;
     },
   
     calculate : function(){ 
-      var $screen = this.$el.find('#screen');
-      var answer = eval( $screen.val() );
-      $screen.val(answer);
+      this.$screen.val( eval(this.$screen.val()) );
     }
   
   }) 
